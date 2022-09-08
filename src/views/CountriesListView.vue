@@ -83,9 +83,6 @@ export default {
 
 <style>
 .mainLayout {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
   background: white;
 }
 </style>

@@ -26,15 +26,9 @@ export default {
       countries: this.$store.getters.destinations,
     };
   },
-  props: {
-    // countries: {
-    //   type: Array,
-    //   required: true
-    // }
-  },
   components: {
     Loader,
     CountriesDataTable
-},
+  },
 };
 </script>
