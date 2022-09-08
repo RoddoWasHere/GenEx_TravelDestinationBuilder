@@ -1,5 +1,4 @@
-# GenEx_TravelDestinationBuilder
-
+# Travel Destination Builder SPA
 
 To install dependencies:
 
