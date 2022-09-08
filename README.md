@@ -1,13 +1,16 @@
 # Travel Destination Builder SPA
 
-To install dependencies:
-
+## Project setup
 ```
-    $ npm install
+npm install
 ```
 
-To run the server:
-
+### Compiles and hot-reloads for development
 ```
-    $ npm run serve
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
 ```
