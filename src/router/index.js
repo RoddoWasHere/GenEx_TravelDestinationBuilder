@@ -9,17 +9,17 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    redirect: "/countries",
+  },
+  {
+    path: "/countries",
+    name: "Countries",
     component: CountriesListView,
   },
   {
     path: "/my-destinations",
     name: "MyDestinations",
     component: DestinationsListView,
-  },
-  {
-    path: "/countries",
-    name: "Countries",
-    component: CountriesListView,
   },
 ];
 

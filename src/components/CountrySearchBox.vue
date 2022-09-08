@@ -10,55 +10,58 @@
 </template>
 
 <script>
-import CountryRestService from '@/services/CountryRestService'
+import CountryRestService from "@/services/CountryRestService";
 
 export default {
   props: {
     onResultsReturned: {
       type: Function,
-      required: false
+      required: false,
     },
     onTextEntered: {
       type: Function,
-      required: false
+      required: false,
     },
   },
   data: () => ({
     entries: [],
     isLoading: false,
     search: null,
-    searchText:"",
+    searchText: "",
   }),
   watch: {
-    search (val) {
+    search(val) {
       this.searchText = val;
-      if(this.onTextEntered) this.onTextEntered(val);
+      if (this.onTextEntered) this.onTextEntered(val);
 
-      if(!val || val==="") return;
-      
+      if (!val || val === "") return;
+
       CountryRestService.findCountriesByName(val)
-        .then(res => {
-          if(this.searchText != val){ // response outdated, discard response
+        .then((res) => {
+          if (this.searchText != val) {
+            // response outdated, discard response
             this.isLoading = true;
             return;
           }
 
-          // remove results not matched with common name 
-          const filteredEntries = res.data.filter(i => i.name.common.indexOf(val) != -1);
+          // remove results not matched with common name
+          const filteredEntries = res.data.filter(
+            (i) => i.name.common.indexOf(val) != -1
+          );
           this.count = filteredEntries.length;
           this.entries = filteredEntries;
 
           this.onResultsReturned(filteredEntries);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         })
         .finally(() => {
           this.isLoading = false;
-        })
+        });
     },
   },
-}
+};
 </script>
 
 <style scoped>

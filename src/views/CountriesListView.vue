@@ -2,16 +2,14 @@
   <v-card class="mainLayout">
     <v-card-title>Countries</v-card-title>
     <v-card-text>
-      <CountrySearchBox 
+      <CountrySearchBox
         :onResultsReturned="onResultsReturned"
         :onTextEntered="onSearchTextEntered"
       />
-      <Loader
-        v-if="isLoading"
-      />
+      <Loader v-if="isLoading" />
       <div>
         <CountriesDataTable
-          v-if="countries" 
+          v-if="countries"
           :countries="countries"
           canAddToDestinations
         />
@@ -21,17 +19,17 @@
 </template>
 
 <script>
-import CountryRestService from '@/services/CountryRestService.js'
-import CountrySearchBox from '@/components/CountrySearchBox.vue'
-import Loader from '../components/Loader.vue'
-import CountriesDataTable from '@/components/CountriesDataTable.vue'
+import CountryRestService from "@/services/CountryRestService.js";
+import CountrySearchBox from "@/components/CountrySearchBox.vue";
+import Loader from "../components/Loader.vue";
+import CountriesDataTable from "@/components/CountriesDataTable.vue";
 
 export default {
-  name: 'CountriesListView',
+  name: "CountriesListView",
   components: {
     CountrySearchBox,
     Loader,
-    CountriesDataTable
+    CountriesDataTable,
   },
   data() {
     return {
@@ -40,45 +38,43 @@ export default {
       allCountries: null,
       searchText: "",
       isLoading: false,
-    }
+    };
   },
-  props:{
+  props: {
     showAllOnBlankSearch: {
       type: Boolean,
-      required: false
+      required: false,
     },
   },
   methods: {
-    onResultsReturned(results){
+    onResultsReturned(results) {
       this.countries = results;
       this.isLoading = false;
     },
-    onSearchTextEntered(text){
+    onSearchTextEntered(text) {
       this.isLoading = true;
-      if(!text || text===""){
+      if (!text || text === "") {
         this.countries = this.allCountries;
-        if(!this.showAllOnBlankSearch)
-          this.isLoading = false;
+        if (!this.showAllOnBlankSearch) this.isLoading = false;
       }
       this.searchText = text;
     },
-    getAllCountries(){
+    getAllCountries() {
       CountryRestService.getCountries()
-        .then(response => {
+        .then((response) => {
           this.countries = response.data;
           this.allCountries = response.data;
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          console.log(error);
         });
-    }
+    },
   },
   created() {
     this.$store.state.currentPage = "countries";
-    if(this.showAllOnBlankSearch)
-      this.getAllCountries();
-  }
-}
+    if (this.showAllOnBlankSearch) this.getAllCountries();
+  },
+};
 </script>
 
 <style>

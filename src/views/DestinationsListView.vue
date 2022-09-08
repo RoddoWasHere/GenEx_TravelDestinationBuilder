@@ -7,14 +7,14 @@
         :countries="countries"
         canDeleteFromDestinations
       />
-      <Loader v-if="!countries"/>
+      <Loader v-if="!countries" />
     </v-card-text>
-  </v-card>  
+  </v-card>
 </template>
 
 <script>
-import Loader from '@/components/Loader.vue';
-import CountriesDataTable from '@/components/CountriesDataTable.vue';
+import Loader from "@/components/Loader.vue";
+import CountriesDataTable from "@/components/CountriesDataTable.vue";
 
 export default {
   name: "MyDestinations",
@@ -28,7 +28,7 @@ export default {
   },
   components: {
     Loader,
-    CountriesDataTable
+    CountriesDataTable,
   },
 };
 </script>

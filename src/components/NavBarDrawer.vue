@@ -2,17 +2,9 @@
   <div class="myDrawerContainer">
     <div v-if="drawerOpen" class="drawerOverlay" @click="closeDrawer">
       <div class="myDrawer">
-        <v-list
-          color="primary"
-          dark
-          elevation="5"
-          nav
-        >
-          <v-list-item-group
-            v-model="group"
-            active-class="text--accent-4"
-          >
-            <slot/>
+        <v-list color="primary" dark elevation="5" nav>
+          <v-list-item-group v-model="group" active-class="text--accent-4">
+            <slot />
           </v-list-item-group>
         </v-list>
       </div>
@@ -26,19 +18,19 @@ export default {
   props: {
     drawerOpen: {
       type: Boolean,
-      required: false
+      required: false,
     },
     setDrawerOpen: {
       type: Function,
-      required: false
+      required: false,
     },
   },
-  methods:{
-    closeDrawer(){
+  methods: {
+    closeDrawer() {
       // this.drawerOpen = false;
       this.setDrawerOpen(false);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -49,15 +41,15 @@ export default {
   /* display: contents; */
   height: 100%;
 }
-.myDrawerContainer{
+.myDrawerContainer {
   position: relative;
   z-index: 99999;
 }
-.myDrawer{
+.myDrawer {
   position: absolute;
   color: white;
 }
-.drawerOverlay{
+.drawerOverlay {
   width: 100%;
   height: 100vh;
   background: #0005;

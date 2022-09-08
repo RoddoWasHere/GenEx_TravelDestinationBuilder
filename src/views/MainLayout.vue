@@ -3,64 +3,52 @@
     <!-- Banner -->
     <div class="banner showDesktopOnly">
       <div class="bannerImageOverlay">
-        <img class="bannerLogoImg" :src="require('../assets/logo.png')"/>
+        <img class="bannerLogoImg" :src="require('../assets/logo.png')" />
         <h1>Travel Destination Builder</h1>
       </div>
-      <img class="bannerImage" :src="require('../assets/banner.jpg')"/>
+      <img class="bannerImage" :src="require('../assets/banner.jpg')" />
     </div>
-    
+
     <!-- Nav bar 1 -->
     <v-card class="navBar showMobileOnly">
       <v-app-bar app color="primary" dark class="navBar" clipped-left>
         <div class="d-flex align-center">
-          <v-app-bar-nav-icon class="showMobileOnly" large @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon
+            class="showMobileOnly"
+            large
+            @click="drawer = !drawer"
+          ></v-app-bar-nav-icon>
           <v-icon large class="showDesktopOnly">mdi-airplane</v-icon>
-          <h1 class="logoTitle">
-            &nbsp;Destination Builder
-          </h1>
+          <h1 class="logoTitle">&nbsp;Destination Builder</h1>
         </div>
 
         <v-spacer></v-spacer>
-
       </v-app-bar>
     </v-card>
 
     <!-- Nav bar 2 -->
-    <v-card
-      class="navBar showDesktopOnly"
-    >
-      <v-app-bar
-        color="primary"
-        dark
-        class="navBar"
-      >
+    <v-card class="navBar showDesktopOnly">
+      <v-app-bar color="primary" dark class="navBar">
         <v-toolbar-item class="showDesktopOnly">
           <v-btn text color="white" @click="gotoPage('Countries')">
-            <span 
-              :class="navBtnClass('Countries')"
-            >
-              Countries
-            </span>
+            <span :class="navBtnClass('Countries')"> Countries </span>
           </v-btn>
           <v-btn
             v-if="hasDestinations"
-            text color="white"
+            text
+            color="white"
             @click="gotoPage('MyDestinations')"
           >
-            <span
-              :class="navBtnClass('MyDestinations')"
-            >
-              My List
-            </span>
+            <span :class="navBtnClass('MyDestinations')"> My List </span>
           </v-btn>
         </v-toolbar-item>
       </v-app-bar>
     </v-card>
 
     <!-- Nav bar drawer -->
-    <NavBarDrawer 
+    <NavBarDrawer
       :drawerOpen="drawer"
-      :setDrawerOpen="(isOpen) => drawer = isOpen"
+      :setDrawerOpen="(isOpen) => (drawer = isOpen)"
     >
       <v-list-item @click="gotoPage('Countries')">
         <div class="navBarIcon">
@@ -71,7 +59,7 @@
         </v-list-item-title>
       </v-list-item>
 
-      <v-list-item  @click="gotoPage('MyDestinations')" v-if="hasDestinations">
+      <v-list-item @click="gotoPage('MyDestinations')" v-if="hasDestinations">
         <div class="navBarIcon">
           <v-icon>mdi-airplane</v-icon>
         </div>
@@ -85,33 +73,32 @@
     <v-main class="main">
       <router-view />
     </v-main>
-
   </v-app>
 </template>
-  
+
 <script>
-import NavBarDrawer from '@/components/NavBarDrawer.vue';
+import NavBarDrawer from "@/components/NavBarDrawer.vue";
 export default {
   data: () => ({
-      drawer: false,
-      currentPageName: "Countries",
+    drawer: false,
+    currentPageName: "Countries",
   }),
   computed: {
-      hasDestinations() {
-          return this.$store.getters.destinations.length > 0;
-      }
+    hasDestinations() {
+      return this.$store.getters.destinations.length > 0;
+    },
   },
   methods: {
-    navBtnClass(name){
-      return this.currentPageName == name ? 'navButtonSelected':'';
+    navBtnClass(name) {
+      return this.currentPageName == name ? "navButtonSelected" : "";
     },
-    gotoPage(name){
+    gotoPage(name) {
       this.currentPageName = name;
       this.$router.push({ name });
     },
   },
   components: { NavBarDrawer },
-}
+};
 </script>
 
 <style scoped>
@@ -126,7 +113,8 @@ export default {
   margin-bottom: -20px;
 }
 .bannerImageOverlay {
-  background: linear-gradient(0deg, #a35300, #00000000);
+  /* background: linear-gradient(0deg, #a35300, #00000000); */
+  background: linear-gradient(0deg, #a32700e0, #a35300eb 10%, #00000000);
   width: 100%;
   height: 32vw;
   position: absolute;
@@ -139,7 +127,7 @@ export default {
   text-shadow: 0 0 2vw black;
 }
 
-.navButtonSelected{
+.navButtonSelected {
   border-bottom: 2px solid #fff8;
   font-weight: 900;
   color: white;
@@ -151,7 +139,7 @@ export default {
   width: 100%;
 }
 .main {
-  padding: 0px 0px 0px 0px !important;  
+  padding: 0px 0px 0px 0px !important;
   height: 100%;
   overflow-y: auto;
   background: #eee;
@@ -161,8 +149,8 @@ export default {
   align-items: center;
 
   /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -170,18 +158,17 @@ export default {
   display: none;
 }
 
-
 .app {
   /* height: 100vh; */
   height: calc(100vh + 32vw);
   overflow: hidden;
 }
 
-.navBarIcon{
+.navBarIcon {
   margin-right: 12px;
   color: white;
 }
-.logoTitle{
+.logoTitle {
   font-size: 28px;
 }
 
@@ -194,10 +181,10 @@ export default {
 
 /* Mobile only */
 @media only screen and (max-width: 400px) {
-  .showDesktopOnly{
+  .showDesktopOnly {
     display: none;
   }
-  .logoTitle{
+  .logoTitle {
     font-size: 22px;
   }
 }

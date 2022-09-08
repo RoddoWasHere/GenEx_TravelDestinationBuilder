@@ -1,12 +1,11 @@
 <template>
-  <MainLayout/>
+  <MainLayout />
 </template>
 
 <script>
-import MainLayout from './views/MainLayout.vue';
+import MainLayout from "./views/MainLayout.vue";
 export default {
-    name: "App",
-    components: { MainLayout }
+  name: "App",
+  components: { MainLayout },
 };
 </script>
-  

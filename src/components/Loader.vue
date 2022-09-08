@@ -1,18 +1,13 @@
 <template>
   <div class="loaderContainer">
-    <v-progress-circular
-      :size="70"
-      :width="7"
-      color="grey"
-      indeterminate
-    >
+    <v-progress-circular :size="70" :width="7" color="grey" indeterminate>
     </v-progress-circular>
   </div>
 </template>
 
 <script>
 export default {
-    name: "Loader",
+  name: "Loader",
 };
 </script>
 
