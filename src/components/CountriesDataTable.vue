@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import CountryModal from '@/views/CountryModal.vue';
 import CountryTableCard from './CountryTableCard.vue';
   export default {
     props: {
@@ -68,25 +67,12 @@ import CountryTableCard from './CountryTableCard.vue';
     methods: {
       addToDestinations(item) {
         this.$store.dispatch('addToDestinations', item);
-        // this.$store.state.destinations.push(item);
-        // console.log("item?", item);
       },
       removeFromDestinations(item) {
         this.$store.dispatch('removeFromDestinations', item);
-        // let index = -1;
-        // this.$store.state.destinations.find((c, i) =>{
-        //   if(c.cca3 == item.cca3) index = i;
-        //   return c.cca3 == item.cca3;
-        // });
-        // if(index != -1)
-        //   this.$store.state.destinations.splice(index, 1);
-        // console.log("removing?", index);
       },
       hasBeenAdded(item) {
         return this.$store.getters.destinationsContains(item);
-        // const tp = this.$store.state.destinations.find(i => i.cca3 == item.cca3); //TODO: use find
-        // console.log("got item", tp);
-        // return tp != null;
       },
       expandRow(item) {
         if(this.expandedItems[0] == item)
@@ -113,7 +99,7 @@ import CountryTableCard from './CountryTableCard.vue';
           headers,
       };
     },
-    components: { CountryModal, CountryTableCard }
+    components: { CountryTableCard }
 }
 </script>
 
@@ -129,13 +115,4 @@ import CountryTableCard from './CountryTableCard.vue';
   font-weight: bold;
   background: #ddd;
 }
-/* .flagContainer {
-  height: 100px;
-  background: grey;
-  display: inline-flex;
-  box-shadow: 2px 2px 4px #0005;
-}
-.dropShadow{
-  box-shadow: 2px 2px 4px #0005;
-} */
 </style>

@@ -15,8 +15,6 @@
 <script>
 import Loader from '@/components/Loader.vue';
 import CountriesDataTable from '@/components/CountriesDataTable.vue';
-//import HelloWorld from "../components/HelloWorld";
-//import EventList from "../views/EventList";
 
 export default {
   name: "MyDestinations",

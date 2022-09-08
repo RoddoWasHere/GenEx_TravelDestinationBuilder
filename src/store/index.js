@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    destinations: []
+    destinations: [],
+    currentPage: "",
   },
   getters: {
     destinations(state) {
