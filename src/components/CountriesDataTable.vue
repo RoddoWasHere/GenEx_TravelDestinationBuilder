@@ -5,14 +5,12 @@
       :headers="headers"
       :items="countries"
       :items-per-page="10"
-      :single-expand="true"
-      item-key="cca3"
+      item-key="id"
       class="elevation-1"
-      single-select
       :expanded="expandedItems"
       :value="expandedItems"
       item=""
-      :sort-by="'name.common'"
+      :sort-by="'name'"
       width="100%"
       max-width="500px"
     >
@@ -22,9 +20,9 @@
         </td>
       </template>
 
-      <template v-slot:[`item.name.common`]="{ item }">
+      <template v-slot:[`item.name`]="{ item }">
         <td class="tdBtn" @click="() => expandRow(item)">
-          {{ item.name.common }}
+          {{ item.name }}
         </td>
       </template>
 
@@ -58,6 +56,10 @@ export default {
       type: Array,
       required: true,
     },
+    singleExpand: {
+      type: Boolean,
+      required: false,
+    },
     canAddToDestinations: {
       type: Boolean,
       required: false,
@@ -78,10 +80,22 @@ export default {
       return this.$store.getters.destinationsContains(item);
     },
     expandRow(item) {
-      if (this.expandedItems[0] == item) this.expandedItems = [];
-      else this.expandedItems = [item];
-
-      console.log("expanded?", this.expandedItems[0]);
+      //remove if exists
+      if (
+        this.expandedItems.find((c, i) => {
+          if (c.id == item.id) {
+            this.expandedItems.splice(i, 1);
+            return true;
+          }
+          return false;
+        })
+      ) {
+        //removed (collapsed)
+      } else {
+        //add (expand)
+        if (this.singleExpand) this.expandedItems = [];
+        this.expandedItems.push(item);
+      }
     },
   },
   data() {
@@ -93,8 +107,8 @@ export default {
     const hasActions =
       this.canAddToDestinations || this.canDeleteFromDestinations;
     const headers = [
-      // {text: "CCA3",value: "cca3" },//debugging
-      { text: "Name", value: "name.common" },
+      // {text: "id",value: "id" },//debugging
+      { text: "Name", value: "name" },
       { text: "Region", value: "region" },
     ];
     if (hasActions)

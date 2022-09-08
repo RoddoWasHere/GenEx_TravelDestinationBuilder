@@ -16,7 +16,7 @@
           <v-app-bar-nav-icon
             class="showMobileOnly"
             large
-            @click="drawer = !drawer"
+            @click="idDrawerOpen = !idDrawerOpen"
           ></v-app-bar-nav-icon>
           <v-icon large class="showDesktopOnly">mdi-airplane</v-icon>
           <h1 class="logoTitle">&nbsp;Destination Builder</h1>
@@ -47,8 +47,8 @@
 
     <!-- Nav bar drawer -->
     <NavBarDrawer
-      :drawerOpen="drawer"
-      :setDrawerOpen="(isOpen) => (drawer = isOpen)"
+      :drawerOpen="idDrawerOpen"
+      :setDrawerOpen="(isOpen) => (idDrawerOpen = isOpen)"
     >
       <v-list-item @click="gotoPage('Countries')">
         <div class="navBarIcon">
@@ -80,7 +80,7 @@
 import NavBarDrawer from "@/components/NavBarDrawer.vue";
 export default {
   data: () => ({
-    drawer: false,
+    idDrawerOpen: false,
     currentPageName: "Countries",
   }),
   computed: {

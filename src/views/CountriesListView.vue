@@ -80,5 +80,6 @@ export default {
 <style>
 .mainLayout {
   background: white;
+  margin-bottom: 100px;
 }
 </style>

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Country from "@/models/Country";
 import CountryRestService from "@/services/CountryRestService";
 
 export default {
@@ -44,17 +45,27 @@ export default {
             return;
           }
 
+          //convert to models
+          const entries = res.data.map((c) => new Country(c));
+
           // remove results not matched with common name
-          const filteredEntries = res.data.filter(
-            (i) => i.name.common.indexOf(val) != -1
+          const filteredEntries = entries.filter(
+            (i) => i.name.toLowerCase().indexOf(val.toLowerCase()) != -1
           );
-          this.count = filteredEntries.length;
           this.entries = filteredEntries;
 
           this.onResultsReturned(filteredEntries);
         })
         .catch((err) => {
           console.log(err);
+
+          if (err.message == "Request failed with status code 404") {
+            //404: no matches
+            this.entries = [];
+            this.onResultsReturned(this.entries);
+          } else {
+            this.onResultsReturned(null);
+          }
         })
         .finally(() => {
           this.isLoading = false;

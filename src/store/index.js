@@ -13,8 +13,7 @@ export default new Vuex.Store({
       return state.destinations;
     },
     destinationsContains: (state) => (item) => {
-      const tp = state.destinations.find((i) => i.cca3 == item.cca3); //TODO: use find
-      console.log("got item", tp);
+      const tp = state.destinations.find((i) => i.id == item.id); //TODO: use find
       return tp != null;
     },
   },
@@ -25,11 +24,10 @@ export default new Vuex.Store({
     removeFromDestinations(state, item) {
       let index = -1;
       state.destinations.find((c, i) => {
-        if (c.cca3 == item.cca3) index = i;
-        return c.cca3 == item.cca3;
+        if (c.id == item.id) index = i;
+        return c.id == item.id;
       });
       if (index != -1) state.destinations.splice(index, 1);
-      console.log("removing?", index);
     },
   },
   actions: {
